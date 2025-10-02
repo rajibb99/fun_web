@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebuah Pertanyaan Untukmu...</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="content-utama">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3N2eWxtcDM4d2U1Z3U2aWN2ZHNqa3p6NWY3cWV6cWtoZ2dudDJ6eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="kucing lucu bertanya" class="gif">
+            
+            <h1>Mau gak jadi pacarku? 👉👈</h1>
+            
+            <div class="buttons">
+                <button id="yes-btn">Iya, Mau!</button>
+                <button id="no-btn">Nggak</button>
+            </div>
+        </div>
+
+        <div id="content-jawaban" style="display: none;">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExejNnaGYwNmJ6Z2V2bTVwa2l0aGN2dDBxNHR3b2hndm1xb3JpOTU5dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/FTGah7Mx3ss04PcasF/giphy.gif" alt="kucing lucu senang" class="gif">
+            <h1>Asiiik! I Love You Too! ❤️</h1>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const contentUtama = document.getElementById('content-utama');
+        const contentJawaban = document.getElementById('content-jawaban');
+
+        // Fungsi untuk memindahkan tombol "No" secara acak
+        function pindahTombol() {
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            // Batas maksimal pergerakan tombol di dalam container
+            const maxX = containerRect.width - btnRect.width;
+            const maxY = containerRect.height - btnRect.height;
+            
+            // Posisi acak baru
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            noBtn.style.position = 'absolute'; // Pastikan posisi absolut
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Tambahkan event listener saat kursor mendekati tombol "No"
+        noBtn.addEventListener('mouseover', pindahTombol);
+
+        // Aksi ketika tombol "Yes" di-klik
+        yesBtn.addEventListener('click', () => {
+            // Sembunyikan konten pertanyaan
+            contentUtama.style.display = 'none';
+            // Tampilkan konten jawaban "Yes"
+            contentJawaban.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
